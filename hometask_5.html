@@ -1,0 +1,194 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<style type="text/css">
+.form-style-4{
+	width: 450px;
+	font-size: 16px;
+	background: #495C70;
+	padding: 30px 30px 15px 30px;
+	border: 5px solid #53687E;
+	margin-left: 33%; /* Отступ слева */
+	margin-right: 33%; /* Отступ справа */
+
+}
+.form-style-4 input[type=submit],
+.form-style-4 input[type=button],
+.form-style-4 input[type=text],
+.form-style-4 input[type=email],
+.form-style-4 textarea,
+.form-style-4 label
+{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	color: #fff;
+
+}
+.form-style-4 label {
+	display:block;
+	margin-bottom: 10px;
+}
+.form-style-4 label > span{
+	display: inline-block;
+	width: 150px;
+}
+.form-style-4 input[type=text],
+.form-style-4 input[type=email] 
+{
+	background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	width: 275px;
+	outline: none;
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+}
+.form-style-4 textarea{
+	font-style: italic;
+	padding: 0px 0px 0px 0px;
+	background: transparent;
+	outline: none;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	width: 275px;
+	overflow: hidden;
+	resize:none;
+	height:20px;
+}
+
+.form-style-4 textarea:focus, 
+.form-style-4 input[type=text]:focus,
+.form-style-4 input[type=email]:focus,
+.form-style-4 input[type=email] :focus
+{
+	border-bottom: 1px dashed #D9FFA9;
+}
+
+.form-style-4 input[type=submit],
+.form-style-4 input[type=button]{
+	background: #576E86;
+	border: none;
+	padding: 8px 10px 8px 10px;
+	border-radius: 5px;
+	color: #A8BACE;
+}
+.form-style-4 input[type=submit]:hover,
+.form-style-4 input[type=button]:hover{
+	background: #394D61;
+}
+</style>
+
+
+<body>
+	<div>
+		<form class="form-style-4" action="" method="post" style="text-align: center" onsubmit="addUser();">
+			<label for="field1">
+				<span>First Name</span><input type="text" name="firstName" required="true" />
+			</label>
+			<label for="field2">
+				<span>Second Name </span><input type="text" name="secondName"  />
+			</label>
+			<label for="field3">
+				<span>Age</span><input type="text" name="Age"  />
+			</label>
+			<label for="field4">
+				<span>Sex</span><input type="text" name="Sex"  />
+			</label>
+			<label for="field4">
+				<span>Languages</span><input type="text" name="lang"  />
+			</label>
+			<label>
+				<span>&nbsp;</span><input type="submit" value="Add User"  />
+			</label>
+
+		</form>
+	</div>
+	<div id="table-div">
+		
+	</div>
+</body>
+                                            
+
+
+                                            <!-- Array   Sort -->
+<script type="text/javascript">
+	// var  arr =[1,4,2,4,112,12];
+	// console.log(arr);
+	// arr = arr.sort(function (a, b) {  return a - b;  });
+	// console.log(arr);
+</script>
+
+
+<script type="text/javascript">
+	var list = [];
+
+	function addUser(){
+		var firstName = document.getElementsByName("firstName")[0].value;
+		var secondName = document.getElementsByName("secondName")[0].value;
+		var age = document.getElementsByName("Age")[0].value;
+		var sex = document.getElementsByName("Sex")[0].value;
+		var lang = document.getElementsByName("lang")[0].value;
+        languages = lang.split(', ');
+	
+		var User = new Person(firstName, secondName, age, sex, languages);
+		list.push(User);
+		showList();
+	}
+
+	function Person(firstName, secondName, age, sex, languages  ) {
+  		this.firstName = firstName;
+  		this.secondName = secondName;
+  		this.age = age;
+  		this.sex = sex;
+  		this.languages = languages;
+	}
+
+	function showList() {
+		console.log("dsfhksdfdsf");
+			// var table = document.createElement('table');
+			// for(var index = 0; index < list.length; index ++) {
+			// 	var row = document.createElement('tr');
+			// 	table.appendChild(row);
+			// 	for (property in list[index]) {
+			// 		var td = document.createElement('td');
+			// 		td.innerText = list[index][property];
+			// 		row.appendChild(td);
+			// 	}
+			// }
+			// document.getElementById("table-div").appendChild(table);
+			
+			var table = document.createElement('table');
+			for(var index = 0; index < 10; index ++) {
+				var row = document.createElement('tr');
+				table.appendChild(row);
+				for (var j = 0; j < 10; j ++) {
+					var td = document.createElement('td');
+					td.innerText = "Trump" + j;
+					console.log("Trump" + j);
+					row.appendChild(td);
+				}
+			document.getElementById("table-div").appendChild(table);
+	}}
+
+	// window.onload = function(){
+	// 	var table = document.createElement('table');
+	// 		for(var index = 0; index < 10; index ++) {
+	// 			var row = document.createElement('tr');
+	// 			table.appendChild(row);
+	// 			for (var j = 0; j < 10; j ++) {
+	// 				var td = document.createElement('td');
+	// 				td.innerText = "Trump" + j;
+	// 				row.appendChild(td);
+	// 			}
+	// 		}
+	// 		document.getElementById("table-div").appendChild(table);
+	// }
+	
+		
+	
+</script>
