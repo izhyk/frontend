@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <style>
+    .bar {
+      fill: #95B3D7;
+      height: 21px;
+      transition: fill .3s ease;
+      cursor: pointer;
+      font-family: Helvetica, sans-serif;
+    }
+    .bar text {
+      color: black;
+    }
+    .bar:hover,
+    .bar:focus {
+      fill: blue;
+    }
+    .bar:hover text,
+    .bar:focus text {
+      fill: red;
+    }
+    #svg {
+        top: 50px
+    }
+
+    div .name {
+      float: left;
+      display: inline-block;
+      width: 120px;
+      text-align: right;
+      overflow:hidden;
+      margin-right: 10px; 
+    }
+
+    div .name p {
+      color: #335C91;
+      margin: 0;
+      white-space: nowrap;
+      overflow:hidden !important;
+      text-overflow: ellipsis;
+    }
+
+  </style>
+    <title>SVG</title>
+    <script>
+        var values = new Array();
+        values.push({name: 'м.Київ',       val: 123 });
+        values.push({name: 'Київська',     val: 94  });
+        values.push({name: 'Львівська',    val: 23 });
+        values.push({name: 'Житомирська',  val: 47  });
+        values.push({name: 'Одеська',      val: 35  });
+        values.push({name: 'Хмельницька',  val: 7  });
+        values.push({name: 'Вінницька',    val: 16  });
+        values.push({name: 'Херсонська',   val: 77  });
+        values.push({name: 'Полтавська',   val: 62  });
+        values.push({name: 'Волинська',    val: 40  });
+        values.push({name: 'Чернівецька',  val: 37  });
+        values.push({name: 'Донецька',     val: 58  });
+        values.push({name: 'Луганська',    val: 22  });
+        values.push({name: 'Сумська',      val: 44  });
+        values.push({name: 'Харківська',   val: 18  });
+        values.push({name: 'Закарпатська', val: 99  });
+        values.push({name: 'Тернопільська',val: 100  });
+        
+        window.addEventListener("load", function () {
+            var chart = createBarChart( values,
+                600,
+                500,
+                "blue");
+
+            var container = document.getElementById("svg");
+            container.appendChild(chart.svg_result);
+            container.appendChild(chart.div_result);
+
+        });
+    </script>
+</head>
+<body>
+        <div class="col-md-3"></div>
+        <div class="col-md-7" id="svg"></div>
+</body>
+
+
+<script type="text/javascript">
+    
+function createBarChart(data, width, height, color) {
+    data.sort(function(a,b) {
+        return b.val - a.val;
+    });
+    
+
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute('width',width+8);
+    svg.setAttribute('height',height);
+    var max = data[0].val;
+
+    var divForName = document.createElement('div');
+    divForName.setAttribute('class', 'name');
+
+    for (var i = 0; i < data.length; i++) {
+        if (max < data[i].val)
+            max = data[i].val; 
+    }
+
+    var scale = (width - 30) / max;
+    
+
+    var svgNS = svg.namespaceURI;
+
+    var yTop = 0;
+    var y = 10;
+
+    for (var i = 0; i < data.length; i++) {
+        var g = document.createElementNS(svgNS, "g");
+        g.setAttribute( 'class', 'bar' );
+       
+        var p = document.createElement('p');
+        p.innerHTML = data[i].name;
+        divForName.appendChild(p);
+      
+
+
+        var rect = document.createElementNS(svgNS,'rect');
+         rect.setAttribute('width',data[i].val*scale);
+         rect.setAttribute('height',19);
+         rect.setAttribute('x', 10);
+         rect.setAttribute('y', yTop);
+         yTop+=20;
+         g.appendChild(rect);
+
+        var textValue = document.createElementNS(svgNS,"text");
+            textValue.setAttributeNS(null,"x",(data[i].val*scale + 15));     
+            textValue.setAttributeNS(null,"y",y); 
+            y+=20;
+            textValue.setAttributeNS(null,"dy",".35em");
+            textValue.innerHTML = data[i].val ;
+
+        g.appendChild(textValue);
+        
+        svg.appendChild(g);
+    }
+    var result = {
+      svg_result: svg,
+      div_result: divForName,
+    }
+  
+    return result;
+}
+</script>
+</html>
